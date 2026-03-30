@@ -8,6 +8,16 @@ body{
     min-height:100vh;
 }
 
+p.about{
+    text-indent: 2em;
+    text-align: left;
+}
+
+h3.proj{
+    text-indent: 2em;
+    text-align: left;
+}
+
 main{
     flex:1;
 }
