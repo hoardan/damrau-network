@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Damrau Network">
+  <g transform="translate(64,59) scale(0.9)">
+    <path d="M0,-52 L44,-30 L44,10 C44,38 24,56 0,64 C-24,56 -44,38 -44,10 L-44,-30 Z" fill="#185FA5"/>
+    <rect x="-16" y="-2" width="32" height="24" rx="4" fill="#fff"/>
+    <path d="M-10,-2 L-10,-13 C-10,-23 10,-23 10,-13 L10,-2" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="10" r="4" fill="#185FA5"/>
+    <line x1="0" y1="12" x2="0" y2="16" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

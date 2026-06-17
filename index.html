@@ -1,57 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Damrau Network - Home</title>
-        <meta name="description" content="Damrau Network & Things">
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <a href="/"><img src="imgs/logo.svg" width="300px" height="auto" style="display:block; margin-right:auto;"></a>
-        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    /* set theme before paint to avoid a flash; respects saved choice, falls back to system */
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <title>Damrau Network — Identity & Infrastructure</title>
+  <meta name="description" content="Jordan Damrau — systems & client-services technician running a fully self-hosted homelab: virtualization, identity, storage, and monitoring." />
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="/contact/">Contact</a>
-        </nav>
-        
-        <main>
-            <section id="home">
-                <h2 style="text-indent: 2em;">A little bit about me!</h2>
-                <img src="imgs/me.jpg" alt="A picture of Jordan Damrau" width="285em" height="auto" style="border-radius: 125px; float: right; margin-right: 15px; margin-bottom: 15px;">
-                <p class="about">Hi, I’m Jordan — an IT professional and homelab enthusiast focused on systems administration, networking, and real-world infrastructure. I specialize in building, managing, and troubleshooting environments that mirror enterprise systems, from Active Directory and deployment services to virtualized servers and network design.</p>
-                <p class="about">I’m a Client Services Technician with hands-on experience supporting large-scale environments, alongside running my own IT services business. I’ve worked with thousands of users in enterprise and educational settings, handling everything from system deployments and account management to troubleshooting complex hardware and network issues.</p>
-                <p class="about">Outside of my professional role, I actively build and maintain a homelab where I experiment with technologies like Proxmox, Active Directory, virtualization, and network segmentation. This allows me to continuously expand my skills in a practical, real-world environment.</p>
-            </section>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand-lockup" href="index.html" aria-label="Damrau Network home">
+        <svg viewBox="0 0 88 116" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0,-52 L44,-30 L44,10 C44,38 24,56 0,64 C-24,56 -44,38 -44,10 L-44,-30 Z" transform="translate(44,52)" fill="#2f8bef"/>
+          <rect x="28" y="50" width="32" height="24" rx="4" fill="#fff"/>
+          <path d="M34,50 L34,39 C34,29 54,29 54,39 L54,50" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="44" cy="62" r="4" fill="#2f8bef"/>
+          <line x1="44" y1="64" x2="44" y2="68" stroke="#2f8bef" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-word">
+          <b>DAMRAU NETWORK</b>
+          <span>Identity &amp; Infrastructure</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="#stack">Stack</a>
+        <a href="#log">Build log</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode" title="Toggle theme">
+          <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        </button>
+        <a class="nav-cta nav-status" href="contact.html"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok);display:inline-block"></span> Open to contact</a>
+      </div>
+    </div>
+  </nav>
 
-            <section>
-                <h2 style="text-indent: 2em;">Here are some of my projects!</h2>
-                <h3 class="proj">Enterprise Server Environment</h3>
-                <p class="about">Designed and deployed a fully functional enterprise-style environment using Active Directory Domain Services (AD DS), DNS, and Windows Deployment Services (WDS). Automated OS deployments and centralized system management using Microsoft Endpoint Configuration Manager (MECM), reducing setup time and ensuring consistency across systems.</p>
-                <h3 class="proj">Homelab Infrastructure (Proxmox + Networking)</h3>
-                <p class="about">Built and maintain a virtualized homelab environment using Proxmox, including multiple VMs for services such as game servers, monitoring tools, and backup systems. Configured VLANs, firewall rules, and network segmentation using UniFi equipment to simulate real-world network architecture.</p>
-                <h3 class="proj">LI Tech Guys Website & Infrastructure</h3>
-                <p class="about">Designed and deployed a business website from scratch using HTML, CSS, and JavaScript, hosted via GitHub Pages. Configured DNS and domain management to ensure reliable access and optimized performance.</p>
-            </section>
+  <main>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Jordan Damrau · Long Island, NY</p>
+          <h1>Identity, infrastructure, and a <span class="accent">healthy fear of downtime</span>.</h1>
+          <p class="hero-sub">Systems and client-services technician who treats a home network like production — virtualization, identity, storage, and monitoring, all self-hosted and over-engineered on purpose.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#stack">Explore the stack →</a>
+            <a class="btn btn-ghost" href="contact.html">Get in touch</a>
+          </div>
+          <div class="hero-tags">
+            <span class="chip">Virtualization</span>
+            <span class="chip">Identity &amp; SSO</span>
+            <span class="chip">Networking</span>
+            <span class="chip">Observability</span>
+          </div>
+        </div>
 
-            <section>
-                <h2 style="text-indent: 2em;">Here are some places I've worked at!</h2>
-                <h3 class="proj">Client Services Technician I — St. Joseph’s University</h3>
-                <p class="about">Support and maintain IT systems for over 3,000 users, handling Tier 1 and Tier 2 issues across hardware, software, and networking. Assist in managing Active Directory environments with over 10,000 users, including group policy administration and system updates. Lead efforts to modernize web platforms while ensuring ADA compliance.</p>
-                <h3 class="proj">Founder & IT Technician — LI Tech Guys LLC</h3>
-                <p class="about">Provide hands-on IT services including hardware repair, system upgrades, and business infrastructure setup. Developed and deployed a company website and configured Google Workspace environments to improve communication and workflow.</p>
-                <h3 class="proj">Assistant Webmaster — SyntaxNY</h3>
-                <p class="about">Managed over 70 websites across multiple CMS platforms, ensuring accessibility compliance and resolving technical issues through a ticketing system.</p>
-            </section>
-        </main>
+        <!-- SIGNATURE: live-style status board -->
+        <div class="board reveal" role="img" aria-label="Core stack: virtualization, identity, storage, networking, monitoring, and edge access">
+          <div class="board-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="title">// the stack</span>
+          </div>
+          <div class="board-list">
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">Proxmox VE <small>the host for everything</small></span>
+            </div>
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">Active Directory · ADFS <small>single sign-on</small></span>
+            </div>
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">TrueNAS SCALE <small>storage &amp; backups</small></span>
+            </div>
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">UniFi <small>the network edge</small></span>
+            </div>
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">Prometheus · Grafana <small>metrics &amp; dashboards</small></span>
+            </div>
+            <div class="svc">
+              <span class="led"></span>
+              <span class="name">Cloudflare Zero Trust <small>secured remote access</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <footer>
-            <p>© 2026 | Jordan Damrau</p>
-        </footer>
-    </body>
+    <hr class="divider" />
+
+    <!-- STACK -->
+    <section class="section" id="stack">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">The stack</p>
+          <h2>Everything an enterprise runs — just at home.</h2>
+          <p>A Proxmox-backed homelab built around real identity, storage, and observability. Nothing here is a toy: it federates, it segments, and it pages me when something drifts.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card reveal">
+            <span class="tag">Virtualization</span>
+            <h3>Proxmox VE</h3>
+            <p>The host for it all — domain controllers, Home Assistant, game servers, and a dedicated monitoring VM, all hardened and snapshot-backed.</p>
+            <div class="stack-row"><span class="chip">Proxmox</span><span class="chip">LXC</span><span class="chip">KVM</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Identity &amp; access</span>
+            <h3>Active Directory + ADFS</h3>
+            <p>Windows Server AD with ADFS federated to Cloudflare over SAML — claim rules, certificate trust, single sign-on, and MFA where it earns its keep.</p>
+            <div class="stack-row"><span class="chip">ADFS</span><span class="chip">SAML SSO</span><span class="chip">Duo MFA</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Storage</span>
+            <h3>TrueNAS SCALE</h3>
+            <p>Network storage and backups on ZFS, with health and pool monitoring wired into the alert pipeline over the WebSocket API.</p>
+            <div class="stack-row"><span class="chip">ZFS</span><span class="chip">SMB</span><span class="chip">Snapshots</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Network</span>
+            <h3>UniFi UDM Pro</h3>
+            <p>The edge of the network — VLAN segmentation and PoE switching, with sensitive workloads fenced off on their own isolated segments.</p>
+            <div class="stack-row"><span class="chip">UniFi</span><span class="chip">VLANs</span><span class="chip">802.1X</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Observability</span>
+            <h3>Monitoring &amp; alerting</h3>
+            <p>Prometheus and Grafana feeding a custom HTML email alert system across every service — Proxmox, AD, TrueNAS, UPS, SSH, and tunnels. If it moves, I hear about it.</p>
+            <div class="stack-row"><span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">SMTP alerts</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Edge &amp; access</span>
+            <h3>Cloudflare Zero Trust</h3>
+            <p>External access runs through Zero Trust tunnels with ADFS single sign-on in front — backed by WAF hardening, CAPTCHA challenges, geo-blocking, and DNS hygiene.</p>
+            <div class="stack-row"><span class="chip">Zero Trust</span><span class="chip">WAF</span><span class="chip">Tunnels</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Power</span>
+            <h3>UPS over NUT</h3>
+            <p>A CyberPower UPS managed through NUT, with automated clean-shutdown logic so a power blip never turns into a corrupted pool.</p>
+            <div class="stack-row"><span class="chip">NUT</span><span class="chip">CyberPower</span><span class="chip">Auto-shutdown</span></div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">By day</span>
+            <h3>Jamf Pro fleet</h3>
+            <p>Managing a Jamf-managed Mac fleet at work — DDM software updates, 802.1X Wi-Fi profiles, Jamf Connect SSO, and the occasional gnarly FileVault edge case.</p>
+            <div class="stack-row"><span class="chip">Jamf Pro</span><span class="chip">macOS</span><span class="chip">DDM</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILD LOG -->
+    <section class="section" id="log">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Build log</p>
+          <h2>Recent work, in order.</h2>
+          <p>A running record of what I've shipped, broken, and fixed across the network.</p>
+        </div>
+
+        <div class="log">
+          <div class="log-item reveal">
+            <span class="log-date">2026.06</span>
+            <div class="log-body">
+              <h4>Federated identity end-to-end</h4>
+              <p>Wired ADFS to Cloudflare over SAML — relying-party trust, claim rules, and certificate fixes — so every external service sits behind a single sign-on.</p>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">2026.06</span>
+            <div class="log-body">
+              <h4>Hardened the edge</h4>
+              <p>WAF tuning with CAPTCHA and geo-blocking, dangling-DNS cleanup, and OpenSSH stripped from VMs that didn't need it.</p>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">2026.05</span>
+            <div class="log-body">
+              <h4>Migrated TrueNAS monitoring to WebSocket</h4>
+              <p>Rebuilt the storage health script off the deprecated REST endpoints onto the WebSocket API for cleaner, faster polling.</p>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">2026.05</span>
+            <div class="log-body">
+              <h4>Wired up end-to-end alerting</h4>
+              <p>Built a custom HTML email alert pipeline across Proxmox, Active Directory, TrueNAS, and the UPS — so a problem reaches me before it becomes an outage.</p>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">2025.01</span>
+            <div class="log-body">
+              <h4>Where it started — the enterprise server</h4>
+              <p>Brought up an HP ProLiant DL380p G8 on Proxmox with Active Directory Domain Services and DNS, automated OS deployment through WDS, and patch and software management via MECM.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-photo reveal">
+          <img src="me.jpg" alt="Jordan Damrau" />
+        </div>
+        <div class="about-body reveal">
+          <p class="eyebrow">About</p>
+          <p><strong>I'm Jordan</strong> — a systems and client-services technician based on Long Island, with a degree in computer science and mathematics and a habit of turning curiosity into infrastructure.</p>
+          <p>By day I manage a Jamf-administered Mac fleet. Off the clock I'm usually in the homelab, treating my own network like production — identity, segmentation, backups, and monitoring that actually pages me. I learn by building the real thing, breaking it, and writing down what broke so it doesn't again.</p>
+          <p>When I'm not in a terminal, I'm at the gym, gaming, or chasing the next thing worth over-engineering.</p>
+          <div class="about-stats">
+            <div><b>CS + Math</b><span>BS · ST. JOSEPH'S</span></div>
+            <div><b>Homelab</b><span>SELF-HOSTED</span></div>
+            <div><b>Long Island</b><span>NEW YORK</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & EDUCATION -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Experience &amp; education</p>
+          <h2>Where I've been.</h2>
+        </div>
+        <div class="log">
+          <div class="log-item reveal">
+            <span class="log-date">2024 — NOW</span>
+            <div class="log-body">
+              <h4>Client Services Technician I · St. Joseph's University</h4>
+              <p class="log-place">Patchogue, NY</p>
+              <ul class="log-points">
+                <li>Resolve Tier 1–2 tickets for 3,000+ staff, faculty, and students — software, hardware, and account issues, plus Windows/macOS imaging on replacements, AV support, and networking.</li>
+                <li>Help administer Active Directory for 10,000+ users — managing groups, group policy, and policy deployment across faculty and staff machines.</li>
+                <li>Led a refresh of the IT department's web presence with ADA-accessible HTML, CSS, and JavaScript, and maintain public technical documentation.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">2023 — 2024</span>
+            <div class="log-body">
+              <h4>Assistant Webmaster · SyntaxNY</h4>
+              <p class="log-place">Farmingville, NY</p>
+              <ul class="log-points">
+                <li>Managed 70+ school websites across WordPress, Squarespace, Blackboard, SchoolMessenger, and a proprietary CMS.</li>
+                <li>Met ADA accessibility standards with image descriptions and copyable PDF documents.</li>
+                <li>Triaged requests from routine to urgent in the Kayako ticketing system.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="log-item reveal">
+            <span class="log-date">EDUCATION</span>
+            <div class="log-body">
+              <h4>B.S., Computer Science &amp; Mathematics · St. Joseph's University</h4>
+              <p class="log-place">Patchogue, NY · May 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="skills reveal">
+          <div class="skills-row">
+            <span class="skills-label">Languages</span>
+            <div class="stack-row">
+              <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">Java</span><span class="chip">C#</span><span class="chip">HTML / CSS</span>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="skills-label">Tools</span>
+            <div class="stack-row">
+              <span class="chip">PowerShell</span><span class="chip">Active Directory</span><span class="chip">MECM</span><span class="chip">WDS</span><span class="chip">Jamf Pro</span><span class="chip">Git</span><span class="chip">Adobe CC</span>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="skills-label">Hardware</span>
+            <div class="stack-row">
+              <span class="chip">Cisco switches</span><span class="chip">UniFi</span><span class="chip">Proxmox hosts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© 2026 Jordan Damrau · Damrau Network</span>
+      <span class="footer-status"><i></i> all systems operational</span>
+      <span><a href="contact.html">Contact →</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.add("js");
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('themeToggle');
+      if (btn) btn.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    })();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
 </html>
